@@ -3,7 +3,7 @@ import React from "react";
 function Images(props) {
   const imgArry = props.images.map(image => (
     <img
-      className="col-2 m-5"
+      className="col-2 m-4"
       height="200px"
       src={image.img}
       key={image.id}
@@ -12,7 +12,7 @@ function Images(props) {
     />
   ));
 
-  return <div className="d-flex flex-wrap">{imgArry}</div>;
+  return <div className="container d-flex flex-wrap">{imgArry}</div>;
 }
 
 export default Images;
