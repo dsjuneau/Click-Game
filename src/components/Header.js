@@ -6,8 +6,10 @@ function Header() {
       <div className="row">
         <div className="text-center font-weight-bold h1 col-3">Clicky Game</div>
         <div className="text-center font-weight-light h2 col-4">Filler</div>
-        <div className="text-center font-weight-bold h1 col-2">Score</div>
-        <div className="text-center font-weight-bold h1 col-3">Top Score</div>
+        <div className="text-center font-weight-bold h1 col-2">Score: 0</div>
+        <div className="text-center font-weight-bold h1 col-3">
+          Top Score: 0
+        </div>
       </div>
     </div>
   );
