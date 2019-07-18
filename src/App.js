@@ -11,7 +11,7 @@ class App extends React.Component {
     images: [
       { id: "0", img: "./imgs/kyle1.jpg", isClicked: false },
       { id: "1", img: "./imgs/kyle2.jpg", isClicked: false },
-      { id: "2", img: "./imgs/kyle3.jpg", isClicked: true },
+      { id: "2", img: "./imgs/kyle3.jpg", isClicked: false },
       { id: "3", img: "./imgs/kyle4.jpg", isClicked: false },
       { id: "4", img: "./imgs/kyle5.jpg", isClicked: false },
       { id: "5", img: "./imgs/kyle6.jpg", isClicked: false },
@@ -52,13 +52,33 @@ class App extends React.Component {
       if (image.id === idx) {
         if (image.isClicked) {
           this.setState({ score: "0" });
+          this.setState(prevState => {
+            return {
+              images: prevState.images.map(image => {
+                image.isClicked = false;
+                return image;
+              })
+            };
+          });
           console.log("Game Over");
         } else {
           this.setState({ score: parseInt(this.state.score) + 1 });
           if (this.state.score === this.state.topScore) {
             this.setState({ topScore: parseInt(this.state.topScore) + 1 });
           }
-          console.log("Add to score and update state");
+
+          this.setState(prevState => {
+            return {
+              images: prevState.images.map(image => {
+                if (image.id === idx) {
+                  image.isClicked = true;
+                }
+                return image;
+              })
+            };
+          });
+
+          console.log("update state");
           this.randomize();
         }
       }
