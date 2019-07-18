@@ -51,8 +51,13 @@ class App extends React.Component {
     this.state.images.forEach(image => {
       if (image.id === idx) {
         if (image.isClicked) {
+          this.setState({ score: "0" });
           console.log("Game Over");
         } else {
+          this.setState({ score: parseInt(this.state.score) + 1 });
+          if (this.state.score === this.state.topScore) {
+            this.setState({ topScore: parseInt(this.state.topScore) + 1 });
+          }
           console.log("Add to score and update state");
           this.randomize();
         }
