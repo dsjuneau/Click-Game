@@ -6,19 +6,21 @@ import Footer from "./components/Footer";
 
 class App extends React.Component {
   state = {
+    score: "0",
+    topScore: "0",
     images: [
-      { id: "1", img: "./imgs/kyle1.jpg", isClicked: false },
-      { id: "2", img: "./imgs/kyle2.jpg", isClicked: false },
-      { id: "3", img: "./imgs/kyle3.jpg", isClicked: false },
-      { id: "4", img: "./imgs/kyle4.jpg", isClicked: false },
-      { id: "5", img: "./imgs/kyle5.jpg", isClicked: false },
-      { id: "6", img: "./imgs/kyle6.jpg", isClicked: false },
-      { id: "7", img: "./imgs/kyle7.jpg", isClicked: false },
-      { id: "8", img: "./imgs/kyle8.jpg", isClicked: false },
-      { id: "9", img: "./imgs/kyle9.jpg", isClicked: false },
-      { id: "10", img: "./imgs/kyle10.jpg", isClicked: false },
-      { id: "11", img: "./imgs/kyle11.jpg", isClicked: false },
-      { id: "12", img: "./imgs/kyle12.jpg", isClicked: false }
+      { id: "0", img: "./imgs/kyle1.jpg", isClicked: false },
+      { id: "1", img: "./imgs/kyle2.jpg", isClicked: false },
+      { id: "2", img: "./imgs/kyle3.jpg", isClicked: true },
+      { id: "3", img: "./imgs/kyle4.jpg", isClicked: false },
+      { id: "4", img: "./imgs/kyle5.jpg", isClicked: false },
+      { id: "5", img: "./imgs/kyle6.jpg", isClicked: false },
+      { id: "6", img: "./imgs/kyle7.jpg", isClicked: false },
+      { id: "7", img: "./imgs/kyle8.jpg", isClicked: false },
+      { id: "8", img: "./imgs/kyle9.jpg", isClicked: false },
+      { id: "9", img: "./imgs/kyle10.jpg", isClicked: false },
+      { id: "10", img: "./imgs/kyle11.jpg", isClicked: false },
+      { id: "11", img: "./imgs/kyle12.jpg", isClicked: false }
     ]
   };
 
@@ -44,12 +46,24 @@ class App extends React.Component {
     }
     this.setState({ images: arry });
   };
-  handleClick = () => {};
+  handleClick = idx => {
+    console.log(idx);
+    this.state.images.forEach(image => {
+      if (image.id === idx) {
+        if (image.isClicked) {
+          console.log("Game Over");
+        } else {
+          console.log("Add to score and update state");
+          this.randomize();
+        }
+      }
+    });
+  };
 
   render() {
     return (
       <div>
-        <Header />
+        <Header score={this.state.score} topScore={this.state.topScore} />
         <Banner />
         <Images images={this.state.images} handleClick={this.handleClick} />
         <Footer />
