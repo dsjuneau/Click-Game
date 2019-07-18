@@ -1,4 +1,5 @@
 import React from "react";
+import "./Image.css";
 
 function Images(props) {
   const imgArry = props.images.map(image => (

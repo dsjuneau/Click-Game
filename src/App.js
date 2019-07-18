@@ -6,6 +6,7 @@ import Footer from "./components/Footer";
 
 class App extends React.Component {
   state = {
+    feedback: "",
     score: "0",
     topScore: "0",
     images: [
@@ -52,6 +53,7 @@ class App extends React.Component {
       if (image.id === idx) {
         if (image.isClicked) {
           this.setState({ score: "0" });
+          this.setState({ feedback: "You don't know js" });
           this.setState(prevState => {
             return {
               images: prevState.images.map(image => {
@@ -60,13 +62,13 @@ class App extends React.Component {
               })
             };
           });
-          console.log("Game Over");
+          this.randomize();
         } else {
           this.setState({ score: parseInt(this.state.score) + 1 });
           if (this.state.score === this.state.topScore) {
             this.setState({ topScore: parseInt(this.state.topScore) + 1 });
           }
-
+          this.setState({ feedback: "Kyle is happy!" });
           this.setState(prevState => {
             return {
               images: prevState.images.map(image => {
@@ -88,7 +90,11 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Header score={this.state.score} topScore={this.state.topScore} />
+        <Header
+          score={this.state.score}
+          topScore={this.state.topScore}
+          feedback={this.state.feedback}
+        />
         <Banner />
         <Images images={this.state.images} handleClick={this.handleClick} />
         <Footer />
